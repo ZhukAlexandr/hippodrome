@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="ERROR">
     <Appenders>
-        <RollingFile name="RollingFile" fileName="logs/hippodrome.log" filePattern="logs/hippodrome-%d{yyyy-MM-dd}.log">
+        <RollingFile name="RollingFile" fileName="logs/hippodrome.log" filePattern="logs/hippodrome.%d{yyyy-MM-dd}.log">
 
             <PatternLayout>
                 <pattern>%d %p %c{1.}: %m%n</pattern>
             </PatternLayout>
-<!--            <DefaultRolloverStrategy>-->
-<!--                <Delete …>-->
-<!--                <IfFileName …/>-->
-<!--                <IfLastModified …/>-->
-<!--            </Delete>-->
-<!--        </DefaultRolloverStrategy>-->
-           <TimeBasedTriggeringPolicy />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy>
+                <Delete basePath="logs">
+                    <IfFileName glob="hippodrome-*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
        </RollingFile>
     </Appenders>
     <Loggers>
