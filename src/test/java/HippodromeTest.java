@@ -22,7 +22,7 @@ class HippodromeTest {
 
     @Test
     void constructor_ShouldThrowIllegalArgumentException_WhenArgumentIsEmpty() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Hippodrome(new ArrayList<Horse>()));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> new Hippodrome(new ArrayList<>()));
         String expectedMessage = "Horses cannot be empty.";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
